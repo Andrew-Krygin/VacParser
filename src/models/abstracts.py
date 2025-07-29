@@ -20,6 +20,12 @@ class BaseSaverVacancy(ABC):
     """Абстрактный класс обязывает реализовать методы для добавления вакансий в файл, получения данных из файла по
     указанным критериям и удаления информации о вакансиях."""
 
+    @property
+    @abstractmethod
+    def vacancies(self) -> list | str:
+        """Возвращает текущие вакансии"""
+        pass
+
     @abstractmethod
     def _read_file(self) -> list | str:
         """Если файл уже существует, то читает его и присваивает данные self.__vacancies"""
