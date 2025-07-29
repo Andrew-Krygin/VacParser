@@ -21,7 +21,7 @@ class BaseSaverVacancy(ABC):
     указанным критериям и удаления информации о вакансиях."""
 
     @abstractmethod
-    def _read_file(self) -> list:
+    def _read_file(self) -> list | str:
         """Если файл уже существует, то читает его и присваивает данные self.__vacancies"""
         pass
 
