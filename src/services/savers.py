@@ -87,6 +87,11 @@ class TXTSaver(BaseSaverVacancy):
         """Возвращает текущие вакансии"""
         return self._vacancies
 
+    @property
+    def filename(self) -> str:
+        """Возвращает путь к файлу"""
+        return self.__filename
+
     def _read_file(self) -> str:
         """Если файл уже существует, то читает его и присваивает данные self.__vacancies"""
         if os.path.exists(self.__filename):
