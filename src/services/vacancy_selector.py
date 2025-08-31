@@ -45,6 +45,13 @@ class VacancySelector:
             print("Нет объявлений по указанным критериям.")
         return result
 
+    def get_top(self, vacancies: list["Vacancy"], top_n: int) -> list["Vacancy"]:
+        """Возвращает количество вакансий которое указал пользователь"""
+        if top_n <= 0:
+            return vacancies
+        sorted_vacancies = self.sort_by_salary(vacancies)
+        return sorted_vacancies[:top_n]
+
     @staticmethod
     def safe_int_input(prompt: str, default: int = 0) -> int:
         """Возвращает только корректное число, введенное пользователем"""
@@ -76,7 +83,7 @@ class VacancySelector:
             print(f"Ошибка в формате зарплат: {e}")
             return vacancies
 
-        filtered = [vac for vac in vacancies if vac.salary_to >= salary_from and vac.salary_from <= salary_to]
+        filtered = [vac for vac in vacancies if vac.salary_from >= salary_from and vac.salary_to <= salary_to]
         return filtered
 
     @staticmethod
@@ -92,10 +99,3 @@ class VacancySelector:
     def sort_by_salary(vacancies: list["Vacancy"]) -> list["Vacancy"]:
         """Сортирует список вакансий по убыванию зарплаты"""
         return sorted(vacancies, key=lambda vac: vac.salary_from, reverse=True)
-
-    @staticmethod
-    def get_top(vacancies: list["Vacancy"], top_n: int) -> list["Vacancy"]:
-        """Возвращает количество вакансий которое указал пользователь"""
-        if top_n <= 0:
-            return vacancies
-        return vacancies[:top_n]
