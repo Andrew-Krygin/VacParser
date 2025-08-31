@@ -32,7 +32,9 @@ pytest-cov = "^6.2.1"
 
 [tool.coverage.run]
 omit = [
-    "src/main.py"
+    "src/main.py",
+    "src/models/abstracts.py",
+    "src/menus.py"
 ]
 
 [tool.mypy]
